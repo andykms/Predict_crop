@@ -3,144 +3,143 @@ import { Input } from "../../ui/Input/Input";
 import { FileLoader } from "../FileLoader/FileLoader";
 import styles from './WheatForm.module.scss';
 import { Form } from "../Form/Form";
-import { WheatParams, WheatParamsError } from "../../types/WheatParams";
 import { imageLoadIcon, imageDeleteIcon } from "../Svg/Svg";
 import { WheatParamsSettings } from "../../constants/WheatParamsConstants";
+import { FormActions, ActionTypes, ActionValues } from "../../reducers/FormErrorReducer";
 
-function isRightParam(param: string) {
-  return param.length > 0 && !isNaN(Number.parseInt(param));
+interface WheatFormErrorValues {
+  temperature: {error: boolean},
+  precipitation: {error: boolean},
+  humidity: {error: boolean},
+  wind: {error: boolean},
+  weeds: {error: boolean},
+  file: {error: boolean},
 }
 
-function isRightParamsForm(params: FormParams) {
-  const {temperature, precipitation, humidity, wind, weeds, file} = params;
-  return (
-  isRightParam(temperature) && 
-  isRightParam(precipitation) &&
-  isRightParam(humidity) &&
-  isRightParam(wind) &&
-  isRightParam(weeds))
+interface WheatFormValues {
+  temperature: {value: string},
+  precipitation: {value: string},
+  humidity: {value: string},
+  wind: {value: string},
+  weeds: {value: string},
+  file: {value: File|undefined},
 }
 
 interface WheatFormProps {
-  onSubmitForm: (params: WheatParams)=>void;
-  onNotRightParam: (params?: WheatParamsError)=>void;
-  onSetFile: (file: File)=>void;
-  onDeleteFile: ()=> void;
+  onSubmitForm: ()=>void;
+  dispatcher: (action: FormActions) => void;
+  errors: WheatFormErrorValues;
+  values: WheatFormValues;
   error: string;
-  file: File|undefined;
 }
 
 interface FormParams {
-  temperature: string,
-  precipitation: string,
-  humidity: string,
-  wind: string,
-  weeds: string,
+  temperature: string|undefined,
+  precipitation: string|undefined,
+  humidity: string|undefined,
+  wind: string|undefined,
+  weeds: string|undefined,
   file: File|undefined,
 }
 
+const createInputCallback = (dispatcher: (action: FormActions)=>void, type: ActionTypes) => {
+  return function(event: ChangeEvent) {
+    const value = (event.target as HTMLInputElement).value;
+    if(type !== "FILE") {
+      dispatcher({type, value});
+    }
+  }
+}
 export const WheatForm = (props: WheatFormProps) => {
-    const {onSubmitForm, onNotRightParam, onSetFile, file, error, onDeleteFile} = props;
-    //Температура
-    const [temperature, setTemperature] = useState('0');
-    //осадки
-    const [precipitation, setPrecipitiation] = useState('0');
-    //влажность
-    const [humidity, setHumidity] = useState('0')
-    //ветер
-    const [wind, setWind] = useState('0')
-    //сорняки 
-    const [weeds, setWeeds] = useState('0')
+    const {onSubmitForm, errors,error, dispatcher, values} = props;
     
-    const onChangeTemperature = (event: ChangeEvent) => {
-      setTemperature((event.target as HTMLInputElement).value);
-    };
+    const onChangeTemperature = createInputCallback(dispatcher, "TEMPERATURE");
   
-    const onChangePrecipitation = (event: ChangeEvent) => {
-      setPrecipitiation((event.target as HTMLInputElement).value);
-    };
+    const onChangePrecipitation = createInputCallback(dispatcher, "PRECIPITATION");
   
-    const onChangeHumidity = (event: ChangeEvent) => {
-      setHumidity((event.target as HTMLInputElement).value);
-    };
+    const onChangeHumidity = createInputCallback(dispatcher, "HUMIDITY")
   
-    const onChangeWind = (event: ChangeEvent) => {
-      setWind((event.target as HTMLInputElement).value);
-    };
+    const onChangeWind = createInputCallback(dispatcher, "WIND")
   
-    const onChangeWeeds = (event: ChangeEvent) => {
-      setWeeds((event.target as HTMLInputElement).value);
-    };
+    const onChangeWeeds = createInputCallback(dispatcher, "WEEDS");
   
     const InputTemperature = <Input
       name={"Температура (в градусах цельсия)"}
-      inputValue={temperature}
+      inputValue={values.temperature.value}
       onChange={onChangeTemperature}
       step={WheatParamsSettings.temperature.step}
       max={WheatParamsSettings.temperature.max}
       min={WheatParamsSettings.temperature.min}
+      error={errors.temperature.error}
     ></Input>
   
     const InputPrecipitation = <Input
       name={"Осадки (в мм)"}
-      inputValue={precipitation}
+      inputValue={values.precipitation.value}
       onChange={onChangePrecipitation}
       step={WheatParamsSettings.precipitation.step}
       max={WheatParamsSettings.precipitation.max}
       min={WheatParamsSettings.precipitation.min}
+      error={errors.precipitation.error}
     ></Input>
   
     const InputHumidity = <Input
       name={"Влажность (в процентах)"}
-      inputValue={humidity}
+      inputValue={values.humidity.value}
       onChange={onChangeHumidity}
       step={WheatParamsSettings.humidity.step}
       max={WheatParamsSettings.humidity.max}
       min={WheatParamsSettings.humidity.min}
+      error={errors.humidity.error}
     ></Input>
   
     const InputWind = <Input
       name={"Ветер (в м/с)"}
-      inputValue={wind}
+      inputValue={values.wind.value}
       onChange={onChangeWind}
       max={WheatParamsSettings.wind.max}
       min={WheatParamsSettings.wind.min}
       step={WheatParamsSettings.wind.step}
+      error={errors.wind.error}
     ></Input>
   
     const InputWeeds = <Input
       name={"Площадь сорняков"}
-      inputValue={weeds}
+      inputValue={values.weeds.value}
       onChange={onChangeWeeds}
       max={WheatParamsSettings.weeds.max}
       min={WheatParamsSettings.weeds.min}
       step={WheatParamsSettings.weeds.step}
+      error={errors.weeds.error}
     ></Input>
   
+
+    const onSetFile = (file: File|undefined) => {
+      dispatcher({
+        type: "FILE",
+        value: file,
+      })
+    };
+
+    const onDeleteFile = () => {
+      dispatcher({
+        type: "FILE",
+        value: undefined,
+      })
+    }
     const fileLoader = <FileLoader
       fileType={WheatParamsSettings.file.htmlType}
       checkFileType={WheatParamsSettings.file.type}
       onChange={onSetFile}
-      file={file}
+      file={values.file.value}
       icon = {imageLoadIcon}
       onDelete={onDeleteFile}
       iconDelete={imageDeleteIcon}
+      error={errors.file.error}
     ></FileLoader>
   
     const onClickButtonSubmit = () => {
-      if(!file){ 
-        onNotRightParam();
-        return;
-      }
-      const params: WheatParams = {
-          temperature, 
-          precipitation, 
-          humidity, 
-          wind, 
-          weeds, 
-          file
-      }
-      isRightParamsForm(params) ? onSubmitForm(params) : onNotRightParam();
+      onSubmitForm();
     }
 
     return (

@@ -18,6 +18,7 @@ interface FileLoaderProps {
 	file: File | undefined
 	icon?: ReactNode
 	iconDelete?: ReactNode
+  error: boolean
 }
 
 export const FileLoader = (props: FileLoaderProps) => {
@@ -29,6 +30,7 @@ export const FileLoader = (props: FileLoaderProps) => {
 		icon,
 		iconDelete,
 		onDelete,
+    error,
 	} = props
 
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -89,6 +91,7 @@ export const FileLoader = (props: FileLoaderProps) => {
 					{iconDelete && iconDelete}
 				</Button>
 			)}
+      <span className={styles.fileLoaderError}>{error && "Выберите файл типа изображение"}</span>
 		</label>
 	)
 }

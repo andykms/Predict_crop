@@ -1,48 +1,52 @@
-import { use, useState } from "react";
+import { useReducer, useState } from "react";
 import { Form } from "./Form/Form"
 import { WheatForm } from "./paramsWheatForm/WheatForm";
 import { FileLoaderField } from "./FileLoaderField/FileLoaderField";
 import { InputWindow } from "./InputWindow/InputWindow";
 import { WheatParams, WheatParamsError } from "../types/WheatParams";
+import { FormErrorReducer, FormErrorValues,  } from "../reducers/FormErrorReducer";
+import { InitialWheatParams } from "../constants/InitialWheatParams";
 
 export const App = () => {
 
   const [error, setError] = useState("");
-  const [file, setFile] = useState<File>();
-  const [wheatParams, setParams] = useState<WheatParams>();
 
-  const onSubmitForm = (params: WheatParams)=>{
-    setParams(params);
-    console.log(params);
-  }
-
-  const onNotRightWheatForm = (params?: WheatParamsError) => {
-    setError("Неправильно введены данные")
+  const onSubmitForm = ()=>{
+    const isValid = Object.values(formErrors).every((item)=> {
+      return Boolean(item.value) && !item.error;
+    });
+    if(isValid) {
+      setError("");
+      console.log(formErrors)
+    } else {
+      setError("Заполните данные*");
+    }
   }
 
   const onSetFile = (newFile: File) => {
-    setFile(newFile);
+    dispatcher({
+      type: "FILE",
+      value: newFile,
+    })
   }
 
-  const onDeleteFile = () => {
-    setFile(undefined);
-  }
+  const [formErrors, dispatcher] = useReducer(FormErrorReducer, InitialWheatParams);
 
   const form = <WheatForm 
   onSubmitForm={onSubmitForm} 
-  onDeleteFile={onDeleteFile}
-  onNotRightParam={onNotRightWheatForm} 
-  onSetFile={onSetFile}
-  error={error}
-  file={file}
+  errors={formErrors}
+  error = {error}
+  values={formErrors}
+  dispatcher={dispatcher}
   >
   </WheatForm>
 
   const fileField = <FileLoaderField
     onDragFile={onSetFile}
     fileType={'image/'}
-    file={file}
+    file={formErrors.file.value}
   >
+
   </FileLoaderField>
   return (
     <InputWindow 

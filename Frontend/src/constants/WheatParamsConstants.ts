@@ -1,4 +1,24 @@
-export const WheatParamsSettings = {
+export interface IInputRangeSettings {
+  max: number,
+  min: number,
+  step: number,
+}
+
+export interface IFileSettings{
+  type: string,
+  htmlType: string,
+}
+
+export interface IWheatParamsSettings {
+  temperature: IInputRangeSettings,
+  precipitation: IInputRangeSettings,
+  humidity: IInputRangeSettings,
+  wind: IInputRangeSettings,
+  weeds: IInputRangeSettings,
+  file: IFileSettings,
+}
+
+export const WheatParamsSettings: IWheatParamsSettings = {
   temperature: {
     max: 100,
     min: -100,

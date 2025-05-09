@@ -8,7 +8,7 @@ import { Button } from "../../ui/Button/Button";
 interface FormProps {
   onSubmitForm: ()=>void,
   children: ReactNode,
-  error: string;
+  error?: string;
 }
 
 export const Form = (props: FormProps) => {

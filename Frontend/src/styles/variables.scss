@@ -1,10 +1,11 @@
 :root {
   --input-window-inline-size: clamp(22.5rem, 4.014rem + 78.873vw, 75rem);
   --input-window-flex-direction: row;
-  --input-window-background-color: rgb(74, 74, 74);
+  --input-window-background-color: rgb(56, 56, 56);
   --form-value-background-color: rgb(203, 203, 203);
   --button-load-file-background-color: rgb(255, 229, 98);
   --button-load-file-background-color-choose: rgb(255, 174, 0);
   --file-loader-drag-over-border-color: rgb(255, 213, 0);
   --delete-file-button-background-hover: rgb(255, 126, 126);
+  --form-error-color: rgba(255, 0, 0, 0.534);
 }

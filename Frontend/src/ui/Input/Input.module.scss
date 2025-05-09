@@ -10,3 +10,11 @@
   text-align: center;
   border-radius: 5px;
 }
+
+.inputError {
+  display: block;
+  align-self: center;
+  padding-block-start: 5px;
+  block-size: 15px;
+  color: var(--form-error-color);
+}
