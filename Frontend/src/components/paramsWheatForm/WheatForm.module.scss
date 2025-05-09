@@ -4,3 +4,20 @@
   inline-size: 300px;
   gap: 20px;
 }
+
+.buttonReset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  inline-size: 125px;
+  block-size: 30px;
+  padding: 15px;
+  border-radius: 50em;
+  align-self: flex-start;
+  background-color: var(--button-reset-background-color);
+  transition: background-color 0.2s ease-out;
+}
+
+.buttonReset:hover {
+  background-color: var(--button-reset-background-hover);
+}

@@ -14,7 +14,7 @@ export const Button = (props: ButtonProps) => {
   const {onClick, text, className, textClassName, children} = props;
 
   return (
-    <button className={clsx(styles.button, className)} onMouseDown={(e: MouseEvent)=>{e.preventDefault();onClick()}}>
+    <button className={clsx(styles.button, className)} onMouseDown={(e: MouseEvent)=>{e.preventDefault(); e.stopPropagation();onClick()}}>
       {children}
       <span className={clsx(styles.buttonText, textClassName)}>{text}</span>
     </button>

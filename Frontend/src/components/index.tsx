@@ -30,9 +30,18 @@ export const App = () => {
     })
   }
 
-  const [formErrors, dispatcher] = useReducer(FormErrorReducer, InitialWheatParams);
+  const onReset = () => {
+    console.log("RESET");
+    dispatcher({
+      type: "RESET",
+    })
+    console.log(formErrors);
+  }
+
+  const [formErrors, dispatcher] = useReducer(FormErrorReducer,new InitialWheatParams().data);
 
   const form = <WheatForm 
+  onReset={onReset}
   onSubmitForm={onSubmitForm} 
   errors={formErrors}
   error = {error}

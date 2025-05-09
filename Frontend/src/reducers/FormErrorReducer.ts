@@ -1,5 +1,5 @@
 import { WheatParamsSettings, IInputRangeSettings, IFileSettings } from "../constants/WheatParamsConstants";
-
+import { InitialWheatParams } from "../constants/InitialWheatParams";
 
 export interface FormErrorValues {
   temperature: {
@@ -49,6 +49,8 @@ export type FormActions = {
 } | {
   type: "FILE",
   value: File|undefined,
+} | {
+  type: "RESET",
 }
 
 const isValidNumberValue = (value: string, max: number, min: number)=> {
@@ -116,5 +118,7 @@ export const FormErrorReducer = (formValues: FormErrorValues, action: FormAction
     case "FILE":
       newValues = setFileValue(formValues, action.value);
       return setInputFileError(formValues, WheatParamsSettings.file, action.value);
+    case "RESET":
+      return new InitialWheatParams().data;
   }
 }

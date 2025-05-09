@@ -3,9 +3,10 @@ import { Input } from "../../ui/Input/Input";
 import { FileLoader } from "../FileLoader/FileLoader";
 import styles from './WheatForm.module.scss';
 import { Form } from "../Form/Form";
-import { imageLoadIcon, imageDeleteIcon } from "../Svg/Svg";
+import { imageLoadIcon, imageDeleteIcon, imageResetIcon } from "../Svg/Svg";
 import { WheatParamsSettings } from "../../constants/WheatParamsConstants";
 import { FormActions, ActionTypes, ActionValues } from "../../reducers/FormErrorReducer";
+import { Button } from "../../ui/Button/Button";
 
 interface WheatFormErrorValues {
   temperature: {error: boolean},
@@ -27,6 +28,7 @@ interface WheatFormValues {
 
 interface WheatFormProps {
   onSubmitForm: ()=>void;
+  onReset: ()=> void;
   dispatcher: (action: FormActions) => void;
   errors: WheatFormErrorValues;
   values: WheatFormValues;
@@ -51,7 +53,7 @@ const createInputCallback = (dispatcher: (action: FormActions)=>void, type: Acti
   }
 }
 export const WheatForm = (props: WheatFormProps) => {
-    const {onSubmitForm, errors,error, dispatcher, values} = props;
+    const {onSubmitForm, errors,error, dispatcher, values, onReset} = props;
     
     const onChangeTemperature = createInputCallback(dispatcher, "TEMPERATURE");
   
@@ -152,6 +154,9 @@ export const WheatForm = (props: WheatFormProps) => {
           {InputWeeds} 
           {fileLoader}
         </div>
+        <Button className={styles.buttonReset} onClick={onReset} text={"Сбросить"}>
+          {imageResetIcon}
+        </Button>
       </Form>
     )
 }

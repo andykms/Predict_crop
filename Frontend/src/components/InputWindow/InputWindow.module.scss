@@ -1,10 +1,10 @@
 .inputWindowContainer {
 	display: flex;
 	min-block-size: 600px;
-  max-block-size: 900px;
 	inline-size: var(--input-window-inline-size);
 	justify-self: center;
 	align-self: center;
+  align-items:center;
 	background-color: var(--input-window-background-color);
 	padding: 30px;
 	border-radius: 25px;

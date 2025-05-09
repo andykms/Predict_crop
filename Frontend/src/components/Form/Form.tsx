@@ -21,7 +21,7 @@ export const Form = (props: FormProps) => {
   return (
     <div className={styles.formContainer}>
       {children}
-      <form onSubmit={(e: FormEvent)=>e.preventDefault()}>
+      <form onSubmit={(e: FormEvent)=>{e.preventDefault(); e.stopPropagation()}}>
         <Button className={styles.buttonSubmit} onClick={onClickSubmitButton} text={'Отправить'}>
         </Button>
         <span className={styles.formError}>{error}</span>

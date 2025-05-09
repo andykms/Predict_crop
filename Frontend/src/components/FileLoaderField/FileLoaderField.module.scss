@@ -13,6 +13,12 @@
   transition: border-color 0.3s ease-in-out;
 }
 
+@media (width < 700) {
+  .fileLoaderFieldContainer {
+    block-size: 300px;
+  }
+}
+
 .fileLoaderHint {
   font-size: 22px;
   color: gray;

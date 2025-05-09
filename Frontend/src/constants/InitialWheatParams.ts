@@ -26,29 +26,40 @@ export interface IInitialWheatParams {
 }
 
 
-export const InitialWheatParams: IInitialWheatParams = {
-  temperature: {
+export class InitialWheatParams implements IInitialWheatParams {
+  public temperature = {
     value: '0',
     error: false,
-  },
-  precipitation: {
+  };
+  public precipitation = {
     value: '0',
     error: false,
-  },
-  humidity: {
+  };
+  public humidity = {
     value: '0',
     error: false,
-  },
-  wind: {
+  };
+  public wind = {
     value: "0",
     error: false,
-  },
-  weeds: {
+  };
+  public weeds = {
     value: "0",
     error: false,
-  },
-  file: {
+  }
+  public file = {
     value: undefined,
     error: false,
+  }
+
+  get data() {
+    return {
+      temperature: this.temperature,
+      precipitation: this.precipitation,
+      humidity: this.humidity,
+      wind: this.wind,
+      weeds: this.weeds,
+      file: this.file,
+    }
   }
 }
