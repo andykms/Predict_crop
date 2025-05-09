@@ -8,5 +8,16 @@
 } 
 
 .buttonSubmit {
+  inline-size: 300px;
+  block-size: 40px;
+  border-radius: 50rem;
+  font-weight: 800;
+  border: 3px solid #000;
+} 
 
+.formError {
+  display: block;
+  min-block-size: 20px;
+  text-align: center;
+  color: rgba(255, 0, 0, 0.667)
 }

@@ -1,21 +1,22 @@
 import clsx from "clsx";
 import styles from './Button.module.scss';
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 
 export interface ButtonProps {
   onClick: ()=> void;
   text: string|undefined;
-  className: string;
+  className?: string;
+  textClassName?: string;
   children?: ReactNode;
 }
 
 export const Button = (props: ButtonProps) => {
-  const {onClick, text, className, children} = props;
+  const {onClick, text, className, textClassName, children} = props;
 
   return (
-    <button className={clsx(styles.button, className)} onClick={onClick}>
+    <button className={clsx(styles.button, className)} onMouseDown={(e: MouseEvent)=>{e.preventDefault();onClick()}}>
       {children}
-      <span className={clsx(styles.buttonText)}>{text}</span>
+      <span className={clsx(styles.buttonText, textClassName)}>{text}</span>
     </button>
   )
 }

@@ -3,26 +3,20 @@ import { Form } from "./Form/Form"
 import { WheatForm } from "./paramsWheatForm/WheatForm";
 import { FileLoaderField } from "./FileLoaderField/FileLoaderField";
 import { InputWindow } from "./InputWindow/InputWindow";
-
-export interface WheatParams {
-  temperature: string,
-  precipitation: string,
-  humidity: string,
-  wind: string,
-  weeds: string,
-  file: File,
-}
+import { WheatParams, WheatParamsError } from "../types/WheatParams";
 
 export const App = () => {
 
   const [error, setError] = useState("");
   const [file, setFile] = useState<File>();
+  const [wheatParams, setParams] = useState<WheatParams>();
 
   const onSubmitForm = (params: WheatParams)=>{
-    console.log("Данные успешно отправлены");
+    setParams(params);
+    console.log(params);
   }
 
-  const onNotRightWheatForm = () => {
+  const onNotRightWheatForm = (params?: WheatParamsError) => {
     setError("Неправильно введены данные")
   }
 
@@ -30,8 +24,13 @@ export const App = () => {
     setFile(newFile);
   }
 
+  const onDeleteFile = () => {
+    setFile(undefined);
+  }
+
   const form = <WheatForm 
   onSubmitForm={onSubmitForm} 
+  onDeleteFile={onDeleteFile}
   onNotRightParam={onNotRightWheatForm} 
   onSetFile={onSetFile}
   error={error}

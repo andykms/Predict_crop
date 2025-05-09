@@ -1,4 +1,4 @@
-import {ReactNode, MouseEvent, useRef, useEffect } from "react"
+import {ReactNode, MouseEvent, useRef, useEffect, FormEvent } from "react"
 import { Input } from "../../ui/Input/Input";
 import { FileLoader } from "../FileLoader/FileLoader";
 import styles from './form.module.scss';
@@ -21,9 +21,11 @@ export const Form = (props: FormProps) => {
   return (
     <div className={styles.formContainer}>
       {children}
-      <Button className={styles.buttonSubmit} onClick={onClickSubmitButton} text={'Отправить'}>
-      </Button>
-      <span>{error}</span>
+      <form onSubmit={(e: FormEvent)=>e.preventDefault()}>
+        <Button className={styles.buttonSubmit} onClick={onClickSubmitButton} text={'Отправить'}>
+        </Button>
+        <span className={styles.formError}>{error}</span>
+      </form>
     </div>
   )
 }

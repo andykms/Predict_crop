@@ -1,5 +1,7 @@
 .fileLoaderContainer {
-  
+  display: flex;
+  flex-direction: column;
+  gap:10px;
 }
 
 .fileLoaderInput {
@@ -18,8 +20,35 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fileLoaderButton:hover {
+  background-color: var(--button-load-file-background-color-choose);
+}
+
+.fileDeleteButton {
+  width: 100px;
+  block-size: 30px;
+  background-color: white;
+  border-radius: 50rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease-out;
+}
+
+.fileDeleteButton:hover {
+  background-color: var(--delete-file-button-background-hover);
 }
 
 .currentFile {
 
+}
+
+.buttonText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  white-space: nowrap;
 }

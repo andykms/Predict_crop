@@ -6,8 +6,5 @@
 
 .buttonText {
   display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 200px;
-  white-space: nowrap;
+  font-family: 'OpenSans', sans-serif;
 }
