@@ -1,6 +1,11 @@
 @use './styles/fonts/font.scss';
+@use './styles/global.scss';
+@use './styles/variables.scss';
 
 html,
 body {
   font-family: 'OpenSans', sans-serif;
+  display: flex;
+  margin: auto;
 }
+

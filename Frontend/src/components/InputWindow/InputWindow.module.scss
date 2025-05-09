@@ -1,0 +1,18 @@
+.inputWindowContainer {
+  display: flex;
+  block-size: 600px;
+  inline-size: var(--input-window-inline-size);
+  justify-self: center;
+  align-self: center;
+  background-color: var(--input-window-background-color);
+  padding: 30px;
+  border-radius: 25px;
+  gap: 50px;
+  flex-direction: row;
+}
+
+@media (width < 700px) {
+  .inputWindowContainer {
+    flex-direction: column;
+  }
+}

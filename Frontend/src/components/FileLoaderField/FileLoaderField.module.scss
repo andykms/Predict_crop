@@ -1,0 +1,27 @@
+.fileLoaderFieldContainer {
+  display: flex;
+  block-size: 100%;
+  align-items: center;
+  justify-content: center;
+  inline-size: 70%;
+  border-width: 3px;
+  border-style: dashed;
+  border-color: gray;
+  border-radius: 10px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.fileLoaderHint {
+  font-size: 22px;
+  color: gray;
+  font-family: 'OpenSans';
+}
+
+.fileLoaderFieldContainerOverHandler {
+  border-color: rgba(0, 0, 255, 0.719);
+}
+
+.currentFile {
+  block-size: 100%;
+  inline-size: 100%;
+}

@@ -18,5 +18,5 @@
       "allowSyntheticDefaultImports": true
   },
   "outDir": "./dist/",
-  "include": ["src/**/*", "webpack.config.js"]
+  "include": ["src/**/*", "webpack/webpack.common.js"]
 }

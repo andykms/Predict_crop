@@ -9,9 +9,10 @@
     "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "lint": "eslint --fix",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --ignore-path ./.prettierignore",
-    "check": "npm run stylelint:fix && npm run lint && npm run format"
+    "check": "npm run stylelint:fix && npm run lint && npm run format",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +20,15 @@
   "description": "",
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.0",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-webpack5": "^8.6.12",
+    "@storybook/test": "^8.6.12",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
@@ -26,8 +36,9 @@
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "autoprefixer": "^10.4.21",
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
-    "css-loader": "^7.1.2",
+    "css-loader": "^6.11.0",
     "cssnano": "^7.0.6",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.2",
@@ -37,13 +48,16 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "^0.12.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.5.3",
     "react-refresh": "^0.17.0",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.87.0",
     "sass-loader": "^16.0.5",
+    "storybook": "^8.6.12",
     "style-loader": "^4.0.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
@@ -57,7 +71,13 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

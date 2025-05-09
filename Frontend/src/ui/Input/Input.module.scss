@@ -1,0 +1,12 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputValue {
+  align-self: center;
+  background-color: var(--form-value-background-color);
+  min-inline-size: 50px;
+  text-align: center;
+  border-radius: 5px;
+}

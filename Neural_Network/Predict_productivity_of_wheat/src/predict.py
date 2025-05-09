@@ -9,7 +9,7 @@ from pathlib import Path
 current_script_dir = Path(__file__).parent.absolute()
 sys.path.append(str(current_script_dir))
 def predict_productivity(wheat_info):
-
+    # Температура, осадки, влажность, ветер, сорняки
     temperature = wheat_info["temperature"]
     precipitation = wheat_info["precipitation"]
     humidity = wheat_info["humidity"]

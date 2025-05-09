@@ -1,0 +1,12 @@
+.button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  inline-size: 300px;
+}
+
+.buttonText {
+  text-overflow: ellipsis;
+  inline-size: 300px;
+  white-space: nowrap;
+}
