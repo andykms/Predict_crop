@@ -15,7 +15,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <button className={clsx(styles.button, className)} onClick={onClick}>
       {children}
-      <span className={styles.buttonText}>{text}</span>
+      <span className={clsx(styles.buttonText)}>{text}</span>
     </button>
   )
 }
