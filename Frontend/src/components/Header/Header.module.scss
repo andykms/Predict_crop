@@ -4,7 +4,7 @@
   display: grid;
   grid-template-rows: 100px 400px;
   margin-block-end: 100px;
-  background-color: var(--footer-container-background-color);
+  background-color: var(--header-container-background-color);
 }
 
 .headerNavigation {
@@ -12,7 +12,7 @@
   justify-content: space-between;
   padding-inline-start: 50px;
   padding-inline-end: 50px;
-  background-color: var(--footer-navigation-background-color);
+  background-color: var(--header-navigation-background-color);
 }
 
 .headerMainSiteLink {
@@ -32,7 +32,7 @@
 .headerAuthText {
   font-size: 22px;
   cursor: pointer;
-  color: var(--footer-navigation-text-color);
+  color: var(--header-navigation-text-color);
 }
 
 .headerAuthIcon {
@@ -45,6 +45,6 @@
   font-size: 60px;
   font-family: "Helvetica";
   font-weight: 800;
-  color: var(--footer-main-text-color);
+  color: var(--header-main-text-color);
   padding: 10px;
 }

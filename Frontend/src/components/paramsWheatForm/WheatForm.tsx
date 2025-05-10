@@ -106,7 +106,7 @@ export const WheatForm = (props: WheatFormProps) => {
     ></Input>
   
     const InputWeeds = <Input
-      name={"Площадь сорняков"}
+      name={"Площадь сорняков (в процентах от площади от всего посева)"}
       inputValue={values.weeds.value}
       onChange={onChangeWeeds}
       max={WheatParamsSettings.weeds.max}

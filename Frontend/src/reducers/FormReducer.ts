@@ -120,5 +120,7 @@ export const FormErrorReducer = (formValues: FormErrorValues, action: FormAction
       return setInputFileError(formValues, WheatParamsSettings.file, action.value);
     case "RESET":
       return new InitialWheatParams().data;
+    default:
+      return formValues;
   }
 }

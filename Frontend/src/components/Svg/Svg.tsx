@@ -207,3 +207,13 @@ export const authorizationIcon = (<svg width="50px" height="50px" viewBox="0 0 2
 <path d="M2 12H14.88" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M12.65 8.6499L16 11.9999L12.65 15.3499" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>)
+
+
+export const successFileIcon = (<svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 511.936 511.936" xmlSpace="preserve">
+<g>
+	<g>
+		<polygon points="500.288,61.904 155.888,427.344 11.024,289.376 0,300.96 156.512,450.032 511.936,72.88 		"/>
+	</g>
+</g>
+</svg>)
