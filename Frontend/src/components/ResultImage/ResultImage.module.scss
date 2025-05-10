@@ -1,7 +1,27 @@
 .resultImageContainer {
-
+  border: 2px dashed white;
+  border-radius: var(--image-field-border-radius);
+  justify-self: end;
+  inline-size: 90%;
+  block-size: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+@media (width < 700) {
+  .resultImageContainer {
+    justify-self: center;
+  }
+}
 .resultImage {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
 
+.resultNotSendText {
+  display: block;
+  padding: 20px;
+  font-size: 40px;
+  color: var(--input-font-color);
 }

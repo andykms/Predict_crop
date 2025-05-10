@@ -1,5 +1,6 @@
 .inputWindowContainer {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
 	min-block-size: 600px;
 	inline-size: var(--input-window-inline-size);
 	justify-self: center;
@@ -8,12 +9,14 @@
 	background-color: var(--input-window-background-color);
 	padding: 30px;
 	border-radius: 25px;
-	gap: 50px;
+	gap: 20px;
 	flex-direction: row;
 }
 
 @media (width < 700px) {
 	.inputWindowContainer {
-		flex-direction: column;
+		grid-template-columns: none;
+		grid-template-rows: 1fr 1fr;
+		justify-items: center;
 	}
 }

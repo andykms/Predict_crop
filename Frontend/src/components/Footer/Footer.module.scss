@@ -1,0 +1,23 @@
+.footerContainer {
+  background-color: var(--footer-background-color);
+  min-block-size: 100px;
+  border-start-end-radius: var(--header-border-radius);
+  border-start-start-radius: var(--header-border-radius);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding-inline-start: 50px;
+  padding-block-start: 25px;
+  align-items: center;
+}
+
+.footerAboutProjectText {
+  padding-inline-end: 50px;
+  justify-self: center;
+  font-size: 14px;
+  color: var(--footer-text-about);
+}
+
+.footerLinksContainer {
+  display: flex;
+  gap: 20px;
+}

@@ -5,17 +5,19 @@
   align-self: center;
   justify-self: center;
   justify-content: center;
-  inline-size: 70%;
+  inline-size: 90%;
   border-width: 3px;
   border-style: dashed;
   border-color: gray;
-  border-radius: 10px;
+  border-radius: var(--image-field-border-radius);
+  justify-self: end;
   transition: border-color 0.3s ease-in-out;
 }
 
 @media (width < 700) {
   .fileLoaderFieldContainer {
     block-size: 300px;
+    justify-self: center;
   }
 }
 

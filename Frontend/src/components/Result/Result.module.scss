@@ -15,5 +15,21 @@
 }
 
 .resultLoaded {
-  
+
+}
+
+.resultNotSendText {
+  display: block;
+  padding: 20px;
+  font-size: 28px;
+  color: var(--input-font-color);
+}
+
+.borderLoad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  border-radius: var(--image-field-border-radius);
+  block-size: 600px;
 }

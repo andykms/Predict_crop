@@ -1,6 +1,6 @@
 .headerContainer {
-  border-end-start-radius: 50px;
-  border-end-end-radius: 50px;
+  border-end-start-radius: var(--header-border-radius);
+  border-end-end-radius: var(--header-border-radius);
   display: grid;
   grid-template-rows: 100px 400px;
   margin-block-end: 100px;

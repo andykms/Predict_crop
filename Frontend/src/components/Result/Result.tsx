@@ -32,8 +32,8 @@ export const Result = (props: ResultProps) => {
       }) : null;
   
   const errorContent = isError ? <span className={styles.resultError}>{"Что-то пошло не так, повторите попытку"}</span>: null;
-  const loadContent = isLoaded ? <span className={styles.resultLoaded}></span>: null;
-  const defaultTextContent = resultsContent || errorContent || loadContent ? null : <h3 className={styles.resultNotSendText}>{"Нажмите кнопку отправить, чтобы получить результат"}</h3>;
+  const loadContent = isLoaded ? <div className={styles.borderLoad}><span className={styles.resultLoaded}></span></div>: null;
+  const defaultTextContent = resultsContent || errorContent || loadContent ? null :<div className={styles.borderLoad}><h3 className={styles.resultNotSendText}>{"Нажмите кнопку [отправить], чтобы получить результат"}</h3></div>;
   
   return (
     <article className={styles.resultContainer}>
