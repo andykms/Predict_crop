@@ -6,6 +6,13 @@ html,
 body {
   font-family: 'OpenSans', sans-serif;
   display: flex;
+  flex-direction: column;
   margin: auto;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 

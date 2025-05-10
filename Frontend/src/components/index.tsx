@@ -4,12 +4,23 @@ import { WheatForm } from "./paramsWheatForm/WheatForm";
 import { FileLoaderField } from "./FileLoaderField/FileLoaderField";
 import { InputWindow } from "./InputWindow/InputWindow";
 import { WheatParams, WheatParamsError } from "../types/WheatParams";
-import { FormErrorReducer, FormErrorValues,  } from "../reducers/FormErrorReducer";
+import { FormErrorReducer, FormErrorValues,  } from "../reducers/FormReducer";
 import { InitialWheatParams } from "../constants/InitialWheatParams";
+import { Header } from "./Header/Header";
+import { BackgroundImage } from "../ui/BackgroundImage/BackgroundImage";
+import wheatImage from '../assets/images/wheatfield2.jpg'
 
 export const App = () => {
 
   const [error, setError] = useState("");
+
+  const onEntrance = ()=>{
+    
+  }
+
+  const onExit = ()=> {
+
+  }
 
   const onSubmitForm = ()=>{
     const isValid = Object.values(formErrors).every((item)=> {
@@ -58,10 +69,16 @@ export const App = () => {
 
   </FileLoaderField>
   return (
-    <InputWindow 
-    paramsForm={form}
-    imageField={fileField}
-    >
-    </InputWindow>
+    <>
+      <Header isAuth={false} linkMainSite={"#0"} onClickEntrance={onEntrance} onClickExit={onExit}>
+      </Header>
+      <InputWindow 
+      paramsForm={form}
+      imageField={fileField}
+      >
+      </InputWindow>
+      <BackgroundImage imageSrc={wheatImage}>
+      </BackgroundImage>
+    </>
   )
 }

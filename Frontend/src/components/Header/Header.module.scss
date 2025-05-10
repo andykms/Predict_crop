@@ -1,0 +1,50 @@
+.headerContainer {
+  border-end-start-radius: 50px;
+  border-end-end-radius: 50px;
+  display: grid;
+  grid-template-rows: 100px 400px;
+  margin-block-end: 100px;
+  background-color: var(--footer-container-background-color);
+}
+
+.headerNavigation {
+  display: flex;
+  justify-content: space-between;
+  padding-inline-start: 50px;
+  padding-inline-end: 50px;
+  background-color: var(--footer-navigation-background-color);
+}
+
+.headerMainSiteLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerAuthContainer {
+  display: flex;
+  justify-content: space-between;
+  gap:10px;
+  align-items: center;
+  max-inline-size: 200px;
+}
+
+.headerAuthText {
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--footer-navigation-text-color);
+}
+
+.headerAuthIcon {
+  cursor: pointer;
+}
+
+.headerNameSite {
+  align-self: center;
+  justify-self: center;
+  font-size: 60px;
+  font-family: "Helvetica";
+  font-weight: 800;
+  color: var(--footer-main-text-color);
+  padding: 10px;
+}

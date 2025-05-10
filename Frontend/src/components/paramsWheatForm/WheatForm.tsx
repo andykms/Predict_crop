@@ -5,7 +5,7 @@ import styles from './WheatForm.module.scss';
 import { Form } from "../Form/Form";
 import { imageLoadIcon, imageDeleteIcon, imageResetIcon } from "../Svg/Svg";
 import { WheatParamsSettings } from "../../constants/WheatParamsConstants";
-import { FormActions, ActionTypes, ActionValues } from "../../reducers/FormErrorReducer";
+import { FormActions, ActionTypes, ActionValues } from "../../reducers/FormReducer";
 import { Button } from "../../ui/Button/Button";
 
 interface WheatFormErrorValues {

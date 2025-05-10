@@ -52,10 +52,10 @@ export type FormActions = {
 } | {
   type: "RESET",
 }
-
+const pattern = new RegExp(`^[-+]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?$`)
 const isValidNumberValue = (value: string, max: number, min: number)=> {
   const valueNum = Number.parseFloat(value);
-  if(!isNaN(valueNum)) {
+  if(!isNaN(valueNum) && pattern.test(value)) {
     return valueNum >= min && valueNum <= max;
   }
   return false;

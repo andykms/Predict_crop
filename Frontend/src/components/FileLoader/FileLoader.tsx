@@ -64,11 +64,11 @@ export const FileLoader = (props: FileLoaderProps) => {
     </svg>
 	)
 	return (
-		<label className={styles.fileLoaderContainer}>
+		<div className={styles.fileLoaderContainer}>
 			<input
-				style={{ display: 'none' }}
+				style={{ display: 'none'}}
 				ref={inputRef}
-				onChange={onSetFile}
+				onChange={(e: ChangeEvent) => {e.stopPropagation(); e.preventDefault();onSetFile(e)}}
 				type='file'
 				required
 				accept={fileType}
@@ -92,6 +92,6 @@ export const FileLoader = (props: FileLoaderProps) => {
 				</Button>
 			)}
       <span className={styles.fileLoaderError}>{error && "Выберите файл типа изображение"}</span>
-		</label>
+		</div>
 	)
 }
