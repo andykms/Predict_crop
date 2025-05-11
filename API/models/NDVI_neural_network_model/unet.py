@@ -1,26 +1,33 @@
 import torch
 import torch.nn as nn
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate
 
-class UNet(nn.Module):
-    def __init__(self):
-        super().__init__()
-        # Encoder
-        self.enc1 = self._block(1, 64)
-        self.pool1 = nn.MaxPool2d(2)
-        # Decoder
-        self.up1 = nn.ConvTranspose2d(64, 1, kernel_size=2, stride=2)
-        self.final = nn.Sigmoid()  # Маска [0, 1]
+#
 
-    def _block(self, in_channels, out_channels):
-        return nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, 3, padding=1),
-            nn.ReLU(),
-            nn.Conv2d(out_channels, out_channels, 3, padding=1),
-            nn.ReLU()
-        )
+def unet_model(input_size=(640, 640, 1)):
+    inputs = Input(input_size)
 
-    def forward(self, x):
-        x = self.enc1(x)
-        x = self.pool1(x)
-        x = self.up1(x)
-        return self.final(x)
+    # Encoder
+    conv1 = Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
+    pool1 = MaxPooling2D((2, 2))(conv1)
+
+    conv2 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool1)
+    pool2 = MaxPooling2D((2, 2))(conv2)
+
+    # Bottleneck
+    conv3 = Conv2D(256, (3, 3), activation='relu', padding='same')(pool2)
+
+    # Decoder
+    up1 = UpSampling2D((2, 2))(conv3)
+    concat1 = concatenate([up1, conv2], axis=-1)
+    conv4 = Conv2D(128, (3, 3), activation='relu', padding='same')(concat1)
+
+    up2 = UpSampling2D((2, 2))(conv4)
+    concat2 = concatenate([up2, conv1], axis=-1)
+    conv5 = Conv2D(64, (3, 3), activation='relu', padding='same')(concat2)
+
+    # Output
+    outputs = Conv2D(1, (1, 1), activation='sigmoid')(conv5)
+
+    return Model(inputs, outputs)

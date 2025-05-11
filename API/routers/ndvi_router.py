@@ -6,7 +6,7 @@ import io
 from pathlib import Path
 import sys
 
-from utils.image_processing import process_image
+from utils.image_processing import proccess_image
 
 current_script_dir = Path(__file__).parent.absolute()
 sys.path.append(str(current_script_dir))
@@ -21,11 +21,11 @@ async def analyze_ndvi(image: UploadFile = File(...)):
     contents = await image.read()
     img = Image.open(io.BytesIO(contents))
 
-    processed_img, ndvi_value = process_image(np.array(img))
+    processed_img, ndvi_value = proccess_image(np.array(img))
 
     img_byte_arr = io.BytesIO()
     Image.fromarray(processed_img).save(img_byte_arr, format="PNG")
-
+    print(ndvi_value)
     return Response(
         content=img_byte_arr.getvalue(),
         media_type="image/png",

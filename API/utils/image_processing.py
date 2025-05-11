@@ -1,11 +1,12 @@
 import os
 import cv2
 import numpy as np
-from models.NDVI_neural_network_model.unet import UNet as unet_model
+from models.NDVI_neural_network_model.unet import unet_model
 from .get_NDVI import get_ndvi_on_image_cv2
 import datetime
 import sys
 from pathlib import Path
+import copy
 
 current_script_dir = Path(__file__).parent.absolute()
 sys.path.append(str(current_script_dir))
@@ -35,9 +36,9 @@ def resize_image(img, size=(28,28)):
         mask[y_pos:y_pos+h, x_pos:x_pos+w, :] = img[:h, :w, :]
     return cv2.resize(mask, size, interpolation)
 
-def apply_mask_and_orig_img(mask, img):
+def apply_mask_and_orig_img(mask, img, img_colored):
     result = cv2.bitwise_and(img, img, mask=mask)
-    colored_result = get_colored_filtered_image(result, img)
+    colored_result = get_colored_filtered_image(result, img_colored)
     return colored_result
 
 #Нормализация изображения
@@ -56,8 +57,12 @@ def predict_mask(img_normalized):
 
 def predict_points(img):
     #Изменяем размер изображения
-    img = resize_image(img, (640, 640))
-
+    img = resize_image(img, (100, 100))
+    img_colored = copy.deepcopy(img);
+    print(img_colored)
+    if img.shape[-1] == 4:
+        img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     #Нормализуем изображение
     img_normalized = normalize_img(img)
 
@@ -65,7 +70,7 @@ def predict_points(img):
     mask = predict_mask(img_normalized)
 
     #Получаем итоговое изображение
-    result = apply_mask_and_orig_img(mask, img)
+    result = apply_mask_and_orig_img(mask, img, img_colored)
 
     return result
 
@@ -73,6 +78,7 @@ def predict_points(img):
 def proccess_image(img):
     predicted_img = predict_points(img)
     ndvi = get_ndvi_on_image_cv2(predicted_img)
+    print(ndvi)
     return [predicted_img, ndvi]
 
 
@@ -108,7 +114,7 @@ def predict_points_as_path(path, output_path):
             "successfuly": False,
             "description": "file not found"
         }
-    result = process_image(image_path)
+    result = process_image_old(image_path)
 
     if(result["successfuly"] == True):
         try:
@@ -121,7 +127,7 @@ def predict_points_as_path(path, output_path):
     return result
 
 
-def process_image(image_path):
+def process_image_old(image_path):
     # Загрузка изображения
     img_colored = cv2.imread(image_path,1)
     img_colored = resize_image(img_colored, (640,640))
