@@ -57,7 +57,7 @@ def predict_mask(img_normalized):
 
 def predict_points(img):
     #Изменяем размер изображения
-    img = resize_image(img, (100, 100))
+    img = resize_image(img, (240, 240))
     img_colored = copy.deepcopy(img);
     print(img_colored)
     if img.shape[-1] == 4:
